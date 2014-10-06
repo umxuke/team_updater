@@ -1,0 +1,119 @@
+<?php
+require_once "config/db1.php";
+session_start(); 
+
+# Insert a task
+$name = $_SESSION["user_name"];
+$time = date('Y-m-d');
+
+$result = mysql_query("SELECT user_id FROM users WHERE user_name = '$name'");
+$userid = mysql_fetch_row($result)[0];
+
+$task_record = mysql_query("SELECT * FROM task WHERE user_id = '$userid' and task_date = '$time'");
+$task_record_row = mysql_fetch_row($task_record);
+
+if ( isset($_POST['goalsave'])) {
+ $task = $_POST['task'];
+ $complexion = $_POST['complexion'];
+ $comment = $_POST['comment'];
+ if ($task_record_row[0]) {
+ 	$sql = "UPDATE task SET description='$task', complexion='$complexion', comment='$comment' WHERE user_id = '$userid' and task_date = '$time'"; 
+ 	mysql_query($sql); 
+ } else {
+ 	$sql = "INSERT INTO task (description, user_id, task_date, complexion, comment) VALUES ('$task', '$userid', '$time', '$complexion', '$comment')";
+ 	mysql_query($sql);
+ }
+ header( 'Location: goal.php' );
+}
+
+?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- head -->
+<head>
+  <title>Goal Setting</title>
+  <meta charset="utf-8">
+  <link type="text/css"  rel="stylesheet" href="views/css/glike.css">
+  <link type="text/css"  rel="stylesheet" href="views/css/profile.css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <style type="text/css">
+	body {
+		background-repeat: no-repeat;
+		font-family: "Myriad Pro",Arial, Helvetica, sans-serif;
+	}
+  </style>
+</head>
+
+<body>
+
+<!-- <div class="blacktopbar"></div> -->
+
+    
+
+  <div class="header"> 
+        <img id="logo" src="views/img/logo.png" width="120" height="100">
+		<div class="loginname">
+        	<span class="hi">Hi,</span><span class="user"><?php echo $_SESSION['user_name']; ?></span>
+        	<a class="logout" href="index.php?logout">Logout</a>
+        </div>
+        <div class="headernavigationbar">
+        	<span class="navigationtext">
+            <a href="goal.php" >Goal Setting</a></span>
+            <span class="navigationtext">
+            <a href="profile.php" >Profile</a></span>
+            <span class="navigationtext"><a href=# >Community</a></span>           
+        </div>
+  </div>
+
+
+<div class="whitebackgroundgroup_bigger">
+
+  <div class="goal_set">
+   <h1 class="content_title">Goal Setting</h1>
+   <form method="post">
+   <?php
+     if ($task_record_row[0]) {
+     	
+     	echo ("<label class='goal_label'>Task</label><input type='text' class='goal_input' name='task' value='$task_record_row[1]'/><br><br>");
+     	echo ("<label class='goal_label'>Complexion (%)</label><input type='text' class='goal_input' name='complexion' value='$task_record_row[4]'/><br><br>");
+     	echo ("<label class='goal_label'>Cooperators</label>");     	
+     	$result = mysql_query("SELECT user_name FROM users");
+     	while ( $row = mysql_fetch_row($result) ) {    
+     		if ($row[0] != $_SESSION['user_name']) {
+	 			echo ("<input type='checkbox' class='goal_checkbox' name='cooperator_group' value=$row[0] /> $row[0]  ");
+	 		}
+	 	}	 	
+	 	echo ("<br><br><label class='goal_label'>Comment</label><textarea class='goal_input' name='comment'>$task_record_row[5]</textarea>");
+     	
+     } else {
+     
+     	echo ("<label class='goal_label'>Task</label><input type='text' class='goal_input' name='task' placeholder='Enter task'/><br><br>");
+     	echo ("<label class='goal_label'>Complexion (%)</label><input type='text' class='goal_input' name='complexion' placeholder='0 - 100'/><br><br>");
+     	echo ("<label class='goal_label'>Cooperators</label>");
+	 	$result = mysql_query("SELECT user_name FROM users");
+     	while ( $row = mysql_fetch_row($result) ) { 
+     		if ($row[0] != $_SESSION['user_name']) {
+	 			echo ("<input type='checkbox' class='goal_checkbox' name='cooperator_group' value=$row[0] /> $row[0]  ");
+	 		}
+	 	}
+	 	echo ("<br><br><label class='goal_label'>Comment</label><textarea class='goal_input' name='comment' placeholder='Enter comment'></textarea>");    	
+     }
+	 
+	 ?>
+	 
+	 <br>
+     <br>
+     <div id="button_group">
+	 <input type="submit" value="Update" class="button" name="goalsave"/>
+	 <input class="button" type="reset"  name="goalreset" value="Reset">
+	 </div>
+   </form>
+  </div>
+
+</div> <!--   whitebackgroundgroup_bigger -->
+
+
+</body>
+</html>
