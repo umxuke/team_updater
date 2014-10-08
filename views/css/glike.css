@@ -262,7 +262,8 @@ margin-bottom:40px;
 	display:inline-block;
 	margin-right:45px;
 	margin-left:20px;
-	color:#8D684F;
+/* 	color:#8D684F; */
+	color: rgb(46,226,255);
 }
 
 .goal_input

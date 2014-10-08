@@ -12,21 +12,6 @@ $userid = mysql_fetch_row($result)[0];
 $task_record = mysql_query("SELECT * FROM task WHERE user_id = '$userid' and task_date = '$time'");
 $task_record_row = mysql_fetch_row($task_record);
 
-if ( isset($_POST['goalsave'])) {
- $_SESSION['goal_message'] = 'Nice! Now let’s get to achieve them.';
- $goal1 = $_POST['goal1'];
- $goal2 = $_POST['goal2'];
- $goal3 = $_POST['goal3'];
- if ($task_record_row[0]) {
- 	$sql = "UPDATE task SET goal1='$goal1', goal2='$goal2', goal3='$goal3' WHERE user_id = '$userid' and task_date = '$time'"; 
- 	mysql_query($sql); 
- } else {
- 	$sql = "INSERT INTO task (user_id, task_date, goal1, goal2, goal3) VALUES ('$userid', '$time', '$goal1', '$goal2', '$goal3')";
- 	mysql_query($sql);
- }
- header( 'Location: dashboard.php' );
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -52,23 +37,33 @@ if ( isset($_POST['goalsave'])) {
 <!-- <div class="blacktopbar"></div> -->
 
     
+<div class="header"> 
+	<img id="logo" src="views/img/logo.png" width="120" height="100">
+	<div class="loginname">
+		<span class="hi">Hi,</span><span class="user"><?php echo $_SESSION['user_name']; ?></span>
+		<a class="logout" href="index.php?logout">Logout</a>
+	</div>
+	<div class="headernavigationbar">
+		<span class="navigationtext">
+		<a href="goal.php" >Goal Setting</a></span>
+		<span class="navigationtext">
+		<a href="profile.php" >Profile</a></span>
+		<span class="navigationtext"><a href=# >Community</a></span>           
+	</div>
+</div>
 
-  <div class="header"> 
-        <img id="logo" src="views/img/logo.png" width="120" height="100">
-		<div class="loginname">
-        	<span class="hi">Hi,</span><span class="user"><?php echo $_SESSION['user_name']; ?></span>
-        	<a class="logout" href="index.php?logout">Logout</a>
-        </div>
-        <div class="headernavigationbar">
-        	<span class="navigationtext">
-            <a href="goal.php" >Goal Setting</a></span>
-            <span class="navigationtext">
-            <a href="profile.php" >Profile</a></span>
-            <span class="navigationtext"><a href=# >Community</a></span>           
-        </div>
-  </div>
+<div class="whitebackgroundgroup_bigger">
+	<?php
+		if ( isset($_SESSION['goal_message'])) {
+			echo($_SESSION['goal_message']);
+			unset($_SESSION['goal_message']);
+	}
+
+	?>
+</div>
 
 
+<!-- 
 <div class="whitebackgroundgroup_bigger">
 
   <div class="goal_set">
@@ -103,7 +98,8 @@ better and stress you out. Example: Finish my job application. </p>
    </form>
   </div>
 
-</div> <!--   whitebackgroundgroup_bigger -->
+</div> <!~~   whitebackgroundgroup_bigger ~~>
+ -->
 
 
 </body>
