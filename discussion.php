@@ -22,7 +22,7 @@ $e = htmlentities($row[3]);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!-- head -->
 <head>
-  <title>Goal Setting</title>
+  <title>Discussion</title>
   <meta charset="utf-8">
   <link type="text/css"  rel="stylesheet" href="views/css/glike.css">
   <link type="text/css"  rel="stylesheet" href="views/css/profile.css">
@@ -51,10 +51,10 @@ $e = htmlentities($row[3]);
         <div class="headernavigationbar">
         	<span class="navigationtext">
             <a href="goal.php" >Goal Setting</a></span>
+            <span class="navigationtext"><a href=profile.php >Profile</a></span>    
             <span class="selectednavigationtext">
             <img class="plusicon"align="absmiddle" src="views/img/plus icon-07.png" width="25.9" height="25.9" scr="">
-            <a href="goal.php" >Profile</a></span>
-            <span class="navigationtext"><a href=# >Community</a></span>           
+            <a href="discussion.php" >Discussion</a></span>       
         </div>
   </div>
 
@@ -68,29 +68,23 @@ $e = htmlentities($row[3]);
  -->
 
 <div class="whitebackgroundgroup_bigger">
-         <div class="photo_group">
-          	<div id="profile" width="170" height="170">
-          	<img src="views/img/avatar_standard.jpg" width="170" height="170">
-            </div>
-            <br>
-            <h1 id="profile_title" ><?php echo $name; ?></h1>
-         </div>
+   
 	<!-- User profile form, show current record-->
 
   <div class="profile_group">
-   <h1 class="content_title">Profile</h1>
-   <form method="post">
-	 <label class="profile_label">Username</label><input type="text" class="profile_input" name="name" value="<? echo $n; ?>"/>
-	 <br>
+   <h1 class="content_title">mark</h1>
+-------------------- 
+<br>
+     This is a comment!!
      <br>
-	 <label class="profile_label">Email</label><input type="text" class="profile_input" name="email" value="<? echo $e; ?>"/>
-	 <br>
+     --------------------
      <br>
-     <div id="button_group">
-	 <input type="submit" value="Update" class="button" name="usersave"/>
-	 <input type="submit" class="button" type="reset"  name="userreset" value="Reset">
-	 </div>
+<br>
+
+
    </form>
+
+   
   </div>
 
 </div> <!--   whitebackgroundgroup_bigger -->

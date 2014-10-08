@@ -54,7 +54,7 @@ $e = htmlentities($row[3]);
             <span class="selectednavigationtext">
             <img class="plusicon"align="absmiddle" src="views/img/plus icon-07.png" width="25.9" height="25.9" scr="">
             <a href="goal.php" >Profile</a></span>
-            <span class="navigationtext"><a href=# >Community</a></span>           
+            <span class="navigationtext"><a href="discussion.php" >Discussion</a></span>           
         </div>
   </div>
 
