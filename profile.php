@@ -41,15 +41,15 @@ $e = htmlentities($row[3]);
 <!-- 	<img id="logo" src="views/img/logo.png" width="120" height="100"> -->
 	<div class="loginname">
 		<span class="avatar"><img src="views/img/avatar_standard.jpg" width="50" height="50"></span>
-		<span class="account"><a href="profile.php" >My Account</a></span><br>
-		<span class="user"><?php echo $_SESSION['user_name']; ?></span><br>
+		<span class="account"><a href="dashboard.php" >My Dashboard</a></span><br>
+		<span class="user"><a href="profile.php" ><?php echo $_SESSION['user_name']; ?></a></span><br>
 		<a class="logout" href="index.php?logout">Logout</a>
 	</div>
 	
 	<div class="headernavigationbar">
 		<img src="views/img/teams.png" width="40" height="40"><span class="navigationtext"><a href="" >Teams</a></span>
 		<img src="views/img/goals.png" width="40" height="40"><span class="navigationtext"><a href="form.php" >Goals</a></span>
-		<img src="views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="discussion.php" >Discussion</a></span>           
+		<img src="views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="comment/comment.php" >Discussion</a></span>           
 	</div>
 </div>
 

@@ -51,11 +51,18 @@ body{
 /* 	background-color:blue; */
 }
 
-.account a
+.account a, .user a
 {
  text-decoration:none;
  color:black;
 }
+
+.account a:hover, .user a:hover
+{
+	text-decoration:none;
+	color: rgb(46,226,255);
+}
+
 .account
 {
 	width: 130px;
