@@ -36,6 +36,7 @@ $e = htmlentities($row[3]);
 <!-- <div class="blacktopbar"></div> -->
 
     
+
 <div class="header"> 
 <!-- 	<img id="logo" src="views/img/logo.png" width="120" height="100"> -->
 	<div class="loginname">
@@ -51,6 +52,7 @@ $e = htmlentities($row[3]);
 		<img src="views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="discussion.php" >Discussion</a></span>           
 	</div>
 </div>
+
 
 <!-- 
         <div class="whitebackgroundgroup_bigger">
