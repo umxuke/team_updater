@@ -1,24 +1,25 @@
-<?php
+<?php 
 include('config.php');
 if($_POST)
 {
-$name=$_POST['title'];
+$name=$_POST['name'];
+//$name=mysql_real_escape_string($name);
 $email=$_POST['email'];
-$detail=$_POST['comment'];
-$post_id=$_POST['post_id'];
-
+//$email=mysql_real_escape_string($email);
+$comment=$_POST['comment'];
+//$comment=mysql_real_escape_string($comment);
+$post_id=$_POST['post_id']; 
+//$post_id=mysql_real_escape_string($post_id);
 $lowercase = strtolower($email);
-  $image = md5( $lowercase );
-  
-mysql_query("insert into comment(com_name,com_email,com_detail,post_id) values ('$name','$email','$detail','$post_id')");
-
+$image = md5( $lowercase );
+mysql_query("insert into posts (post_title,post_dis) values ('$name','$comment')");
 }
 
-else { }
-
 ?>
-<li class="box">
-<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?php echo $image; ?>" class="com_img"/><span  class="com_name"> <?php echo $name;?></span> <br /><br />
 
+<li class="box">
+<img src="http://www.gravatar.com/avatar.php?gravatar_id=
+<?php echo $image; ?>"/>
+<?php echo $name;?><br />
 <?php echo $comment; ?>
 </li>

@@ -8,7 +8,8 @@
  <script type="text/javascript">
 $(function() {
 
-$(".submit").click(function() {
+$(".submit").click(
+function() {
 
 var name = $("#name").val();
 var email = $("#email").val();
@@ -25,7 +26,7 @@ var email = $("#email").val();
 	$("#flash").show();
 	$("#flash").fadeIn(400).html('<img src="ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
 $.ajax({
-		type: "POST",
+		type: "post",
   url: "commentajax.php",
    data: dataString,
   cache: false,
@@ -41,10 +42,11 @@ $.ajax({
   $("#flash").hide();
 	
   }
- });
+ }
+);
 }
 return false;
-	});
+});
 
 
 
@@ -140,9 +142,7 @@ a
 </head>
 
 <body>
-<div>
-<h3>Tutorial Link <a href="http://9lessons.blogspot.com">Here</a></h3>
-</div>
+
 
 <div id="main">
 
@@ -151,22 +151,31 @@ a
 <?php
 include('config.php');
 //$post_id value comes from the POSTS table
-$sql=mysql_query("select * from comment where post_id_fk='$post_id'");
+
+$sql=mysql_query("select * from posts");
 while($row=mysql_fetch_array($sql))
 {
-$name=$row['com_name'];
-$email=$row['com_email'];
-$comment_dis=$row['com_dis'];
 
+// $name=$row['com_name'];
+// $email=$row['com_email'];
+$post_dis=$row['post_dis'];
+
+echo "$post_dis";
+echo "<br>";
 $lowercase = strtolower($email);
 $image = md5( $lowercase );
+
 ?>
+
+
+
 
 
 <li class="box">
 <img src="http://www.gravatar.com/avatar.php?gravatar_id=<?php echo $image; ?>" class="com_img">
-<span class="com_name"> <?php echo $name; ?></span> <br />
-My Comment</li>
+<span class="com_name"> <?php echo $post_dis; ?></span> <br />
+My Comment
+</li>
 
 <?php
 }
@@ -178,7 +187,7 @@ My Comment</li>
 <div style="margin-left:100px">
 <form action="#" method="post">
 <input type="hidden" name="post_id" id="post_id" value="<?php echo $post_id; ?>"/>
-<input type="text" name="title" id="name"/><span class="titles">Name</span><span class="star">*</span><br />
+<input type="text" name="name" id="name"/><span class="titles">Name</span><span class="star">*</span><br />
 
 <input type="text" name="email" id="email"/><span class="titles">Email</span><span class="star">*</span><br />
 
@@ -187,8 +196,6 @@ My Comment</li>
 <input type="submit" class="submit" value=" Submit Comment " />
 </form>
 </div>
-
-
 
 
 
