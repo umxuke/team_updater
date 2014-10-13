@@ -25,7 +25,7 @@ if ($login->displayRegisterPage()) {
 } else {
     // are we logged in ?
     if ($login->isUserLoggedIn()) {
-        header( 'Location: goal.php' );
+        header( 'Location: form.php' );
     } else {
         // not logged in, showing the login form
         include("views/login/not_logged_in.php");

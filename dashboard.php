@@ -22,14 +22,8 @@ $task_record_row = mysql_fetch_row($task_record);
   <meta charset="utf-8">
   <link type="text/css"  rel="stylesheet" href="views/css/glike.css">
   <link type="text/css"  rel="stylesheet" href="views/css/profile.css">
-
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-  <style type="text/css">
-	body {
-		background-repeat: no-repeat;
-		font-family: "Myriad Pro",Arial, Helvetica, sans-serif;
-	}
-  </style>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -38,27 +32,29 @@ $task_record_row = mysql_fetch_row($task_record);
 
     
 <div class="header"> 
-	<img id="logo" src="views/img/logo.png" width="120" height="100">
+<!-- 	<img id="logo" src="views/img/logo.png" width="120" height="100"> -->
 	<div class="loginname">
-		<span class="hi">Hi,</span><span class="user"><?php echo $_SESSION['user_name']; ?></span>
+		<span class="avatar"><img src="views/img/avatar_standard.jpg" width="50" height="50"></span>
+		<span class="account"><a href="profile.php" >My Account</a></span><br>
+		<span class="user"><?php echo $_SESSION['user_name']; ?></span><br>
 		<a class="logout" href="index.php?logout">Logout</a>
 	</div>
+	
 	<div class="headernavigationbar">
-		<span class="navigationtext">
-		<a href="goal.php" >Goal Setting</a></span>
-		<span class="navigationtext">
-		<a href="profile.php" >Profile</a></span>
-		<span class="navigationtext"><a href=# >Community</a></span>           
+		<img src="views/img/teams.png" width="40" height="40"><span class="navigationtext"><a href="" >Teams</a></span>
+		<img src="views/img/goals.png" width="40" height="40"><span class="navigationtext"><a href="form.php" >Goals</a></span>
+		<img src="views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="discussion.php" >Discussion</a></span>           
 	</div>
 </div>
 
-<div class="whitebackgroundgroup_bigger">
+<div class="message">
 	<?php
 		if ( isset($_SESSION['goal_message'])) {
+			echo("<p>"); 
 			echo($_SESSION['goal_message']);
+			echo("</p>");
 			unset($_SESSION['goal_message']);
-	}
-
+		}
 	?>
 </div>
 

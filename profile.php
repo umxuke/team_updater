@@ -28,12 +28,7 @@ $e = htmlentities($row[3]);
   <link type="text/css"  rel="stylesheet" href="views/css/profile.css">
 
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-  <style type="text/css">
-	body {
-		background-repeat: no-repeat;
-		font-family: "Myriad Pro",Arial, Helvetica, sans-serif;
-	}
-  </style>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -41,22 +36,21 @@ $e = htmlentities($row[3]);
 <!-- <div class="blacktopbar"></div> -->
 
     
-
-  <div class="header"> 
-        <img id="logo" src="views/img/logo.png" width="120" height="100">
-		<div class="loginname">
-        	<span class="hi">Hi,</span><span class="user"><?php echo $_SESSION['user_name']; ?></span>
-        	<a class="logout" href="index.php?logout">Logout</a>
-        </div>
-        <div class="headernavigationbar">
-        	<span class="navigationtext">
-            <a href="goal.php" >Goal Setting</a></span>
-            <span class="selectednavigationtext">
-            <img class="plusicon"align="absmiddle" src="views/img/plus icon-07.png" width="25.9" height="25.9" scr="">
-            <a href="goal.php" >Profile</a></span>
-            <span class="navigationtext"><a href=# >Community</a></span>           
-        </div>
-  </div>
+<div class="header"> 
+<!-- 	<img id="logo" src="views/img/logo.png" width="120" height="100"> -->
+	<div class="loginname">
+		<span class="avatar"><img src="views/img/avatar_standard.jpg" width="50" height="50"></span>
+		<span class="account"><a href="profile.php" >My Account</a></span><br>
+		<span class="user"><?php echo $_SESSION['user_name']; ?></span><br>
+		<a class="logout" href="index.php?logout">Logout</a>
+	</div>
+	
+	<div class="headernavigationbar">
+		<img src="views/img/teams.png" width="40" height="40"><span class="navigationtext"><a href="" >Teams</a></span>
+		<img src="views/img/goals.png" width="40" height="40"><span class="navigationtext"><a href="form.php" >Goals</a></span>
+		<img src="views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="discussion.php" >Discussion</a></span>           
+	</div>
+</div>
 
 <!-- 
         <div class="whitebackgroundgroup_bigger">

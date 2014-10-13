@@ -26,14 +26,7 @@ $e = htmlentities($row[3]);
   <meta charset="utf-8">
   <link type="text/css"  rel="stylesheet" href="views/css/glike.css">
   <link type="text/css"  rel="stylesheet" href="views/css/profile.css">
-
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-  <style type="text/css">
-	body {
-		background-repeat: no-repeat;
-		font-family: "Myriad Pro",Arial, Helvetica, sans-serif;
-	}
-  </style>
 </head>
 
 <body>

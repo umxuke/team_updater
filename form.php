@@ -37,14 +37,8 @@ if ( isset($_POST['goalsave'])) {
   <meta charset="utf-8">
   <link type="text/css"  rel="stylesheet" href="views/css/glike.css">
   <link type="text/css"  rel="stylesheet" href="views/css/profile.css">
-
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-  <style type="text/css">
-	body {
-		background-repeat: no-repeat;
-		font-family: "Myriad Pro",Arial, Helvetica, sans-serif;
-	}
-  </style>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -53,20 +47,21 @@ if ( isset($_POST['goalsave'])) {
 
     
 
-  <div class="header"> 
-        <img id="logo" src="views/img/logo.png" width="120" height="100">
-		<div class="loginname">
-        	<span class="hi">Hi,</span><span class="user"><?php echo $_SESSION['user_name']; ?></span>
-        	<a class="logout" href="index.php?logout">Logout</a>
-        </div>
-        <div class="headernavigationbar">
-        	<span class="navigationtext">
-            <a href="goal.php" >Goal Setting</a></span>
-            <span class="navigationtext">
-            <a href="profile.php" >Profile</a></span>
-            <span class="navigationtext"><a href=# >Community</a></span>           
-        </div>
-  </div>
+<div class="header"> 
+<!-- 	<img id="logo" src="views/img/logo.png" width="120" height="100"> -->
+	<div class="loginname">
+		<span class="avatar"><img src="views/img/avatar_standard.jpg" width="50" height="50"></span>
+		<span class="account"><a href="profile.php" >My Account</a></span><br>
+		<span class="user"><?php echo $_SESSION['user_name']; ?></span><br>
+		<a class="logout" href="index.php?logout">Logout</a>
+	</div>
+	
+	<div class="headernavigationbar">
+		<img src="views/img/teams.png" width="40" height="40"><span class="navigationtext"><a href="" >Teams</a></span>
+		<img src="views/img/goals.png" width="40" height="40"><span class="navigationtext"><a href="form.php" >Goals</a></span>
+		<img src="views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="discussion.php" >Discussion</a></span>           
+	</div>
+</div>
 
 
 <div class="whitebackgroundgroup_bigger">
@@ -83,14 +78,15 @@ if ( isset($_POST['goalsave'])) {
      	     	
      } else {
 
-     	echo ("<label class='goal_label'>Goal 1</label><input type='text' class='goal_input' name='goal1' placeholder='Enter goal'/><br><br>");
-     	echo ("<label class='goal_label'>Goal 2</label><input type='text' class='goal_input' name='goal2' placeholder='Enter goal'/><br><br>");
-     	echo ("<label class='goal_label'>Goal 3</label><input type='text' class='goal_input' name='goal3' placeholder='Enter goal'/><br><br>");
+     	echo ("<label class='goal_label'>Goal 1</label><input type='text' class='goal_input' name='goal1' placeholder='Enter goal1'/><br><br>");
+     	echo ("<label class='goal_label'>Goal 2</label><input type='text' class='goal_input' name='goal2' placeholder='Enter goal2'/><br><br>");
+     	echo ("<label class='goal_label'>Goal 3</label><input type='text' class='goal_input' name='goal3' placeholder='Enter goal3'/><br><br>");
      }
 	 
 	 ?>
 	 
-	 <p>Note: Be precise and relevant. Avoid being vague and don’t
+
+	 <p class="note">Note: Be precise and relevant. Avoid being vague and don’t
 consider a goal like “Survive”. We know it’s important! But give
 yourself the opportunity to focus on goals that can make you
 better and stress you out. Example: Finish my job application. </p>
