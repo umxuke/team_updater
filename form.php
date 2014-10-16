@@ -2,6 +2,10 @@
 require_once "config/db1.php";
 session_start(); 
 
+if (!$_SESSION){
+	header('Location: index.php');
+}
+
 # Insert a task
 $name = $_SESSION["user_name"];
 $time = date('Y-m-d');
@@ -10,19 +14,24 @@ $result = mysql_query("SELECT user_id FROM users WHERE user_name = '$name'");
 $userid = mysql_fetch_row($result)[0];
 
 $task_record = mysql_query("SELECT * FROM task WHERE user_id = '$userid' and task_date = '$time'");
-$task_record_row = mysql_fetch_row($task_record);
+$numrows = mysql_num_rows($task_record);
 
 if ( isset($_POST['goalsave'])) {
  $_SESSION['goal_message'] = 'Nice! Now let’s get to achieve them.';
  $goal1 = $_POST['goal1'];
  $goal2 = $_POST['goal2'];
  $goal3 = $_POST['goal3'];
- if ($task_record_row[0]) {
- 	$sql = "UPDATE task SET goal1='$goal1', goal2='$goal2', goal3='$goal3' WHERE user_id = '$userid' and task_date = '$time'"; 
- 	mysql_query($sql); 
+ $goal_array = array($goal1,$goal2,$goal3);
+ $i = 0;
+ if ($numrows>0) {
+    while($h=mysql_fetch_row($task_record)){
+ 		mysql_query("UPDATE task SET goal='$goal_array[$i]' WHERE task_id = '$h[0]' and user_id = '$userid' and task_date = '$time'");  
+ 		$i++;
+ 	}
  } else {
- 	$sql = "INSERT INTO task (user_id, task_date, goal1, goal2, goal3) VALUES ('$userid', '$time', '$goal1', '$goal2', '$goal3')";
- 	mysql_query($sql);
+ 	mysql_query("INSERT INTO task (user_id, task_date, goal) VALUES ('$userid', '$time', '$goal1')");
+ 	mysql_query("INSERT INTO task (user_id, task_date, goal) VALUES ('$userid', '$time', '$goal2')");
+ 	mysql_query("INSERT INTO task (user_id, task_date, goal) VALUES ('$userid', '$time', '$goal3')");
  }
  header( 'Location: dashboard.php' );
 }
@@ -70,12 +79,18 @@ if ( isset($_POST['goalsave'])) {
    <h1 class="content_title">What are your 3 goals of the day?</h1>
    <form method="post">
    <?php
-     if ($task_record_row[0]) {
-     	
-     	echo ("<label class='goal_label'>Goal 1</label><input type='text' class='goal_input' name='goal1' value='$task_record_row[3]'/><br><br>");
-     	echo ("<label class='goal_label'>Goal 2</label><input type='text' class='goal_input' name='goal2' value='$task_record_row[4]'/><br><br>");
-     	echo ("<label class='goal_label'>Goal 3</label><input type='text' class='goal_input' name='goal3' value='$task_record_row[5]'/><br><br>");
-     	     	
+   	 $task_record = mysql_query("SELECT * FROM task WHERE user_id = '$userid' and task_date = '$time'");
+   	 $i = 1;
+     if ($numrows>0) {
+     	while($h=mysql_fetch_row($task_record)){
+     		if ($h[4]==100){
+				echo ("<label class='goal_label'>Goal $i</label><input type='text' class='goal_input' name='goal$i' value='$h[3]' disabled/><span class='finish_status'>Finished</span><br><br>");
+     		}
+     		else{     		
+     			echo ("<label class='goal_label'>Goal $i</label><input type='text' class='goal_input' name='goal$i' value='$h[3]'/><br><br>");
+     		}
+     		$i++;	
+		}     	     	
      } else {
 
      	echo ("<label class='goal_label'>Goal 1</label><input type='text' class='goal_input' name='goal1' placeholder='Enter goal1'/><br><br>");

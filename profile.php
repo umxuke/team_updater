@@ -2,6 +2,10 @@
 require_once "config/db1.php";
 session_start(); 
 
+if (!$_SESSION){
+	header('Location: index.php');
+}
+
 # Update user's profile and standard
 $name = $_SESSION["user_name"];
 if ( isset($_POST['usersave'])) {

@@ -2,6 +2,10 @@
 require_once "config/db1.php";
 session_start(); 
 
+if (!$_SESSION){
+	header('Location: index.php');
+}
+
 # Insert a task
 $name = $_SESSION["user_name"];
 $time = date('Y-m-d');
@@ -10,7 +14,6 @@ $result = mysql_query("SELECT user_id FROM users WHERE user_name = '$name'");
 $userid = mysql_fetch_row($result)[0];
 
 $task_record = mysql_query("SELECT * FROM task WHERE user_id = '$userid' and task_date = '$time'");
-$task_record_row = mysql_fetch_row($task_record);
 
 ?>
 
@@ -24,6 +27,7 @@ $task_record_row = mysql_fetch_row($task_record);
   <link type="text/css"  rel="stylesheet" href="views/css/profile.css">
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="todo_list/style.css">
 </head>
 
 <body>
@@ -47,6 +51,7 @@ $task_record_row = mysql_fetch_row($task_record);
 	</div>
 </div>
 
+<div class="wrap">
 <div class="message">
 	<?php
 		if ( isset($_SESSION['goal_message'])) {
@@ -59,43 +64,39 @@ $task_record_row = mysql_fetch_row($task_record);
 </div>
 
 
-<!-- 
-<div class="whitebackgroundgroup_bigger">
+<div class="task-list">
+	<p class="goal_title">Today's goals:</p>
+	<ul>
+    <?php
+    while($h=mysql_fetch_row($task_record)){
+    	if ($h[4] != 100){
+			echo '<li><span>'.$h[3].'</span><img id="'.$h[0].'" class="delete-button" src="todo_list/images/close.png"/></li>';
+		}
+	}
+    ?>
+    </ul>
+</div>
+</div>
 
-  <div class="goal_set">
-   <h1 class="content_title">What are your 3 goals of the day?</h1>
-   <form method="post">
-   <?php
-     if ($task_record_row[0]) {
-     	
-     	echo ("<label class='goal_label'>Goal 1</label><input type='text' class='goal_input' name='goal1' value='$task_record_row[3]'/><br><br>");
-     	echo ("<label class='goal_label'>Goal 2</label><input type='text' class='goal_input' name='goal2' value='$task_record_row[4]'/><br><br>");
-     	echo ("<label class='goal_label'>Goal 3</label><input type='text' class='goal_input' name='goal3' value='$task_record_row[5]'/><br><br>");
-     	     	
-     } else {
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
 
-     	echo ("<label class='goal_label'>Goal 1</label><input type='text' class='goal_input' name='goal1' placeholder='Enter goal'/><br><br>");
-     	echo ("<label class='goal_label'>Goal 2</label><input type='text' class='goal_input' name='goal2' placeholder='Enter goal'/><br><br>");
-     	echo ("<label class='goal_label'>Goal 3</label><input type='text' class='goal_input' name='goal3' placeholder='Enter goal'/><br><br>");
-     }
-	 
-	 ?>
-	 
-	 <p>Note: Be precise and relevant. Avoid being vague and don’t
-consider a goal like “Survive”. We know it’s important! But give
-yourself the opportunity to focus on goals that can make you
-better and stress you out. Example: Finish my job application. </p>
-	 
-     <br>
-     <div id="button_group">
-	 <input type="submit" value="Update" class="button" name="goalsave"/>
-	 <input class="button" type="reset"  name="goalreset" value="Reset">
-	 </div>
-   </form>
-  </div>
+    delete_task(); // Call the delete_task function
 
-</div> <!~~   whitebackgroundgroup_bigger ~~>
- -->
+    function delete_task() {
+        $('.delete-button').click(function(){
+	    var current_element = $(this);
+	    var id = $(this).attr('id');
+
+	    $.post('todo_list/includes/delete-task.php', { task_id: id }, function() {
+		current_element.parent().fadeOut("fast", function() { $(this).remove(); });
+	    });
+        });
+    }
+    
+
+
+</script>
 
 
 </body>

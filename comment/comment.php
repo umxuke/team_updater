@@ -149,11 +149,12 @@ a
 	{
 	color:#000000;
 	font-size:14px;
-	border:#666666 solid 2px;
+	border:#FAFAFA solid 2px;
 	height:124px;
 	margin-bottom:10px;
-		width:200px;
-	
+	width:300px;
+	border-radius:5px;
+	box-shadow:#DDDDDD 2px 2px 2px 2px;
 	}
 	.titles{
 	font-size:13px;
@@ -182,6 +183,20 @@ a
 	margin-left:30px;
 	float:left;
 	width:700px;
+	}
+	.submit
+	{
+	background-color:rgba(46,226,255,0.4);
+	width:200px;
+	height:35px;
+	border-radius:8px;
+/* 	margin-left:30px; */
+	border:0px;	
+	font-size:14px	
+	}
+	.submit:hover
+	{
+	background-color:rgba(46,226,255,0.7);
 	}
 </style>
 </head>
@@ -258,7 +273,7 @@ My Comment
 <input type="text" name="email" id="email"/><span class="titles">Email</span><span class="star">*</span><br />
  -->
 
-<textarea name="comment" id="comment"></textarea><br />
+<textarea name="comment" id="comment" placeholder="Please enter you comment..."></textarea><br />
 
 <input type="submit" class="submit" value=" Submit Comment " />
 </form>
