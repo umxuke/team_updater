@@ -1,6 +1,8 @@
 <?php
-require_once "../config/db1.php";
+include "../config/db1.php";
 session_start(); 
+
+date_default_timezone_set('UTC');
 
 # Insert a task
 $name = $_SESSION["user_name"];
@@ -26,45 +28,42 @@ $task_record_row = mysql_fetch_row($task_record);
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
   
  <script type="text/javascript" src="jquery.js"></script>
+ 
  <script type="text/javascript">
 $(function() {
 
 $(".submit").click(
 function() {
 
-var name = $("#name").val();
-var email = $("#email").val();
 	var comment = $("#comment").val();
-		var post_id = $("#post_id").val();
-    var dataString = 'name='+ name + '&email=' + email + '&comment=' + comment + '&post_id=' + post_id;
+    var dataString =  'comment=' + comment;
 	
-	if(name=='' || email=='' || comment=='')
+	if(comment=='')
      {
     alert('Please Give Valide Details');
      }
 	else
 	{
-	$("#flash").show();
-	$("#flash").fadeIn(400).html('<img src="ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
+    $("#flash").show();
+ 	$("#flash").fadeIn(400).html('<span class="loading">Loading Comments</span>');
 $.ajax({
-		type: "post",
-  url: "commentajax.php",
-   data: dataString,
-  cache: false,
-  success: function(html){
+	type: "post",
+   	url: "commentajax.php",
+   	data: dataString,
+  	cache: false,
+  	success: function(html){
  
-  $("ol#update").append(html);
-  $("ol#update li:last").fadeIn("slow");
-//   document.getElementById('email').value='';
-//    document.getElementById('name').value='';
+   	$("ol#update").append(html);
+  	$("ol#update li:last").fadeIn("slow");
+//  document.getElementById('email').value='';
+//  document.getElementById('name').value='';
     document.getElementById('comment').value='';
 	$("#name").focus();
  
-  $("#flash").hide();
+  	$("#flash").hide();
 	
   }
- }
-);
+ });
 }
 return false;
 });
@@ -226,7 +225,7 @@ a
 <ol  id="update" class="timeline">
 
 <?php
-include('config.php');
+include('../config/db1.php');
 //$post_id value comes from the POSTS table
 
 $sql=mysql_query("select * from posts");
@@ -236,9 +235,11 @@ while($row=mysql_fetch_array($sql))
 // $name=$row['com_name'];
 // $email=$row['com_email'];
 $post_dis=$row['post_dis'];
-
-echo "$post_dis";
+$post_time=$row['time_stamp'];
+echo $name, " ($post_time): ";
+echo $post_dis;
 echo "<br>";
+
 $lowercase = strtolower($email);
 $image = md5( $lowercase );
 
@@ -248,11 +249,13 @@ $image = md5( $lowercase );
 
 
 
+<!-- 
 <li class="box">
 <img src="http://www.gravatar.com/avatar.php?gravatar_id=<?php echo $image; ?>" class="com_img">
 <span class="com_name"> <?php echo $post_dis; ?></span> <br />
 My Comment
 </li>
+ -->
 
 <?php
 }

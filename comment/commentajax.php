@@ -1,25 +1,50 @@
 <?php 
-include('config.php');
+include('../config/db1.php');
+session_start(); 
+
+
 if($_POST)
 {
-$name=$_POST['name'];
-//$name=mysql_real_escape_string($name);
-$email=$_POST['email'];
-//$email=mysql_real_escape_string($email);
+ 
+$username=mysql_real_escape_string($_SESSION["user_name"]);
+
+
 $comment=$_POST['comment'];
+
+
+
 //$comment=mysql_real_escape_string($comment);
-$post_id=$_POST['post_id']; 
-//$post_id=mysql_real_escape_string($post_id);
-$lowercase = strtolower($email);
-$image = md5( $lowercase );
-mysql_query("insert into posts (post_title,post_dis) values ('$name','$comment')");
+
+//$lowercase = strtolower($email);
+//$image = md5( $lowercase );
+// mysql_query("insert into posts (post_dis,user_name) values ('$comment','$username')");
+mysql_query("insert into posts (post_title,post_dis) values ('$username','$comment')");
+
 }
 
 ?>
 
 <li class="box">
-<img src="http://www.gravatar.com/avatar.php?gravatar_id=
-<?php echo $image; ?>"/>
-<?php echo $name;?><br />
-<?php echo $comment; ?>
+
+<?php 
+echo $username;
+echo " (";
+echo date('Y-m-d H:i:s');
+echo "): ";
+echo $comment;
+?>
+
+
+
+<br>
 </li>
+
+
+
+
+
+
+
+
+
+
