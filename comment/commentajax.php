@@ -18,7 +18,7 @@ $comment=$_POST['comment'];
 //$lowercase = strtolower($email);
 //$image = md5( $lowercase );
 // mysql_query("insert into posts (post_dis,user_name) values ('$comment','$username')");
-mysql_query("insert into posts (post_title,post_dis) values ('$username','$comment')");
+mysql_query("insert into posts (user_name,post_dis) values ('$username','$comment')");
 
 }
 
@@ -32,7 +32,10 @@ echo " (";
 echo date('Y-m-d H:i:s');
 echo "): ";
 echo $comment;
+
 ?>
+
+
 
 
 
