@@ -75,13 +75,6 @@ return false;
 
 </script>
 <style type="text/css">
-/* 
-body
-{
-font-family:Arial, Helvetica, sans-serif;
-font-size:14px;
-}
- */
 .comment_box
 {
 background-color:#D3E7F5; border-bottom:#ffffff solid 1px; padding-top:3px
@@ -120,7 +113,7 @@ a
 	#main
 	{
 	width:500px; margin-top:20px; margin-left:100px;
-	font-family:"Trebuchet MS";
+/* 	font-family:"Trebuchet MS"; */
 	}
 	#flash
 	{
@@ -133,16 +126,14 @@ a
 	border-bottom:#dedede dashed 1px;
 	margin-bottom:20px;
 	}
-		input
+	input
 	{
 	color:#000000;
 	font-size:14px;
 	border:#666666 solid 2px;
 	height:24px;
 	margin-bottom:10px;
-	width:200px;
-	
-	
+	width:200px;	
 	}
 	textarea
 	{
@@ -153,7 +144,7 @@ a
 	margin-bottom:10px;
 	width:300px;
 	border-radius:5px;
-	box-shadow:#DDDDDD 2px 2px 2px 2px;
+	box-shadow:2px 2px 5px #DDDDDD;
 	}
 	.titles{
 	font-size:13px;
@@ -178,10 +169,13 @@ a
 	
 	#post_form
 	{
-	margin-top:30px;
-	margin-left:30px;
+/* 	margin-top:20px; */
+/* 	margin-left:30px; */
 	float:left;
-	width:700px;
+	width:300px;
+	position: fixed;
+	top:20px;
+	left:870px;
 	}
 	.submit
 	{
@@ -196,6 +190,45 @@ a
 	.submit:hover
 	{
 	background-color:rgba(46,226,255,0.7);
+	}
+	.post
+	{
+	height:50px;
+	width:500px;
+	padding:15px;
+	margin-bottom:10px;
+	border-radius:8px;
+	background:#fafafa;
+	}
+	.post img{
+	float:left;
+	}
+	.post_info{
+	width:70px;
+	height:50px;
+	float:left;
+	margin-left:10px;
+	border-right-color: #B3B3B3;
+	border-right-style: solid;
+	border-right-width: 1px;
+	}
+	.post_name{
+	float:left;
+	width:70px;
+	height:25px;
+	margin-top:-5px;
+	}
+	.post_time{
+	float:left;
+	width:70px;
+	height:25px;
+	font-size:12px;
+	}
+	.post_comment{
+	margin-top:20px;
+	margin-left:20px;
+	width: 200px;
+	height: 50px;
 	}
 </style>
 </head>
@@ -212,12 +245,12 @@ a
 	
 	<div class="headernavigationbar">
 		<img src="../views/img/teams.png" width="40" height="40"><span class="navigationtext"><a href="" >Teams</a></span>
-		<img src="../views/img/goals.png" width="40" height="40"><span class="navigationtext"><a href="form.php" >Goals</a></span>
-		<img src="../views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="comment/comment.php" >Discussion</a></span>           
+		<img src="../views/img/goals.png" width="40" height="40"><span class="navigationtext"><a href="../form.php" >Goals</a></span>
+		<img src="../views/img/discussion.png" width="40" height="40"><span class="selectednavigationtext"><a href="comment.php" >Discussion</a></span>           
 	</div>
 </div>
 
-<div class="whitebackgroundgroup_bigger">
+<div class="whitebackgroundgroup">
 
 
 <div id="main">
@@ -234,28 +267,20 @@ while($row=mysql_fetch_array($sql))
 
 // $name=$row['com_name'];
 // $email=$row['com_email'];
+echo "<div class='post'>";
+echo "<img src='../views/img/avatar_standard.jpg' width='50' height='50'>";
 $post_dis=$row['post_dis'];
 $post_time=$row['time_stamp'];
-echo $name, " ($post_time): ";
+echo "<span class='post_info'><span class='post_name'>";
+echo $name, "</span><span class='post_time'> ($post_time)</span></span><span class='post_comment'> ";
 echo $post_dis;
-echo "<br>";
+echo "</span><br>";
+echo "</div>";
 
 $lowercase = strtolower($email);
 $image = md5( $lowercase );
 
 ?>
-
-
-
-
-
-<!-- 
-<li class="box">
-<img src="http://www.gravatar.com/avatar.php?gravatar_id=<?php echo $image; ?>" class="com_img">
-<span class="com_name"> <?php echo $post_dis; ?></span> <br />
-My Comment
-</li>
- -->
 
 <?php
 }
@@ -270,14 +295,7 @@ My Comment
 <div id="post_form">
 <form action="#" method="post">
 <input type="hidden" name="post_id" id="post_id" value="<?php echo $post_id; ?>"/>
-<!-- 
-<input type="text" name="name" id="name"/><span class="titles">Name</span><span class="star">*</span><br />
-
-<input type="text" name="email" id="email"/><span class="titles">Email</span><span class="star">*</span><br />
- -->
-
 <textarea name="comment" id="comment" placeholder="Please enter you comment..."></textarea><br />
-
 <input type="submit" class="submit" value=" Submit Comment " />
 </form>
 </div>

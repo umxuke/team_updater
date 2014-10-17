@@ -13,7 +13,7 @@ if ( isset($_POST['date'])) {
 	$time = $_POST['day'];
 }
 else {
-$time = date('Y-m-d');
+$time = localtime();
 }
 
 ?>

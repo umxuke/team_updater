@@ -120,13 +120,21 @@ text-decoration: none;
 .selectednavigationtext
 {
 	width: 125px;
-	float:left;	
+	float:left;
+	text-decoration:none;
+	margin-left:20px;
+	color: rgb(46,226,255);
 }
 
 .selectednavigationtext a
 {
-	color: #FFDA50;
+	color: rgb(46,226,255);
 	text-decoration:none;	
+}
+.selectednavigationtext a:hover
+{
+	text-decoration:none;
+	color: rgb(46,226,255);
 }
 
 .navigationtext
@@ -156,13 +164,26 @@ text-decoration: none;
 .whitebackgroundgroup_bigger
 {
 /* 	position:absolute; */
-	margin-left:20px;
 	margin-top:20px;
 	width:700px;
 /* 	height:100%; */
 	border-radius:20px;
 	background:rgb(250,250,250);
-	float:left;
+	position:fixed;
+	left:270px;
+}
+
+.whitebackgroundgroup
+{
+/* 	position:absolute; */
+/* 	margin-left:10px; */
+	margin-top:20px;
+	width:600px;
+/* 	height:100%; */
+	border-radius:20px;
+/* 	background:rgb(250,250,250); */
+	position:fixed;
+	left:230px;
 }
 
 .message

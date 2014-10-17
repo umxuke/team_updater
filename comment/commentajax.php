@@ -22,25 +22,22 @@ mysql_query("insert into posts (user_name,post_dis) values ('$username','$commen
 
 }
 
+header('Location:');
 ?>
 
-<li class="box">
 
 <?php 
-echo $username;
-echo " (";
-echo date('Y-m-d H:i:s');
-echo "): ";
-echo $comment;
-
+// $time = date('Y-m-d H:i:s');
+// 
+// echo "<div class='post'>";
+// echo "<img src='../views/img/avatar_standard.jpg' width='50' height='50'>";
+// echo "<span class='post_info'><span class='post_name'>";
+// echo $username, "</span><span class='post_time'> ($time)</span></span><span class='post_comment'> ";
+// echo $comment;
+// echo "</span><br>";
+// echo "</div>";
 ?>
 
-
-
-
-
-<br>
-</li>
 
 
 
