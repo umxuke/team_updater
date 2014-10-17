@@ -15,7 +15,6 @@ mysql_query("insert into posts (user_name,post_dis) values ('$username','$commen
 ?>
 
 
-
 <?php 
 $time = date('Y-m-d H:i:s');
 
@@ -29,25 +28,9 @@ echo "</div>";
 ?>
 
 
-
-
-
-
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-//         if("<?php echo $timezone; ?>".length==0){
-            var visitortime = new Date();
-            var visitortimezone = ""+ -visitortime.getTimezoneOffset()/60;
-            $.ajax({
-                type: "GET",
-                url: "timezone.php",
-                data: 'time='+ visitortimezone,
-                success: function(){
-                    location.reload();
-                }
-            });
-  //       }
+location.reload();
     });
 </script>
 
