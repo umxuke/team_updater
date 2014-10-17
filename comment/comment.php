@@ -63,6 +63,7 @@ $.ajax({
   	$("#flash").hide();
 	
   }
+//   success: location.reload();
  });
 }
 return false;

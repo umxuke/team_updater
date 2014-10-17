@@ -7,22 +7,13 @@ if($_POST)
 {
  
 $username=mysql_real_escape_string($_SESSION["user_name"]);
-
-
 $comment=$_POST['comment'];
-
-
-
-//$comment=mysql_real_escape_string($comment);
-
-//$lowercase = strtolower($email);
-//$image = md5( $lowercase );
-// mysql_query("insert into posts (post_dis,user_name) values ('$comment','$username')");
 mysql_query("insert into posts (user_name,post_dis) values ('$username','$comment')");
 
 }
 
 ?>
+
 
 
 <?php 
@@ -42,6 +33,23 @@ echo "</div>";
 
 
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+//         if("<?php echo $timezone; ?>".length==0){
+            var visitortime = new Date();
+            var visitortimezone = ""+ -visitortime.getTimezoneOffset()/60;
+            $.ajax({
+                type: "GET",
+                url: "timezone.php",
+                data: 'time='+ visitortimezone,
+                success: function(){
+                    location.reload();
+                }
+            });
+  //       }
+    });
+</script>
 
 
 
