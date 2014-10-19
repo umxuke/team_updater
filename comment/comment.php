@@ -55,14 +55,14 @@ $.ajax({
  
    	$("ol#update").append(html);
   	$("ol#update li:last").fadeIn("slow");
-//  document.getElementById('email').value='';
-//  document.getElementById('name').value='';
+
     document.getElementById('comment').value='';
 	$("#name").focus();
  
   	$("#flash").hide();
 	
   }
+//   success: location.reload();
  });
 }
 return false;

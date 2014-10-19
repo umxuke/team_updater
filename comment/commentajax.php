@@ -7,17 +7,7 @@ if($_POST)
 {
  
 $username=mysql_real_escape_string($_SESSION["user_name"]);
-
-
 $comment=$_POST['comment'];
-
-
-
-//$comment=mysql_real_escape_string($comment);
-
-//$lowercase = strtolower($email);
-//$image = md5( $lowercase );
-// mysql_query("insert into posts (post_dis,user_name) values ('$comment','$username')");
 mysql_query("insert into posts (user_name,post_dis) values ('$username','$comment')");
 
 }
@@ -38,10 +28,11 @@ echo "</div>";
 ?>
 
 
-
-
-
-
+<script type="text/javascript">
+    $(document).ready(function() {
+location.reload();
+    });
+</script>
 
 
 
