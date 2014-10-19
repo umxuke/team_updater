@@ -112,7 +112,7 @@ a
 	
 	#main
 	{
-	width:500px; margin-top:20px; margin-left:100px;
+/* 	width:500px; margin-top:20px; margin-left:100px; */
 /* 	font-family:"Trebuchet MS"; */
 	}
 	#flash
@@ -253,7 +253,7 @@ a
 <div class="whitebackgroundgroup">
 
 
-<div id="main">
+<!-- <div id="main"> -->
 
 <ol  id="update" class="timeline">
 
@@ -288,7 +288,7 @@ $image = md5( $lowercase );
 
 </ol>
 
-</div>
+<!-- </div> -->
 </div>
 <div id="flash" align="left"  ></div>
 
