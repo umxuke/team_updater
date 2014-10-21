@@ -45,37 +45,53 @@ $task_record = mysql_query("SELECT * FROM task WHERE user_id = '$userid' and tas
 	</div>
 	
 	<div class="headernavigationbar">
-		<img src="views/img/teams.png" width="40" height="40"><span class="navigationtext"><a href="team.php" >Teams</a></span>
+		<img src="views/img/teams.png" width="40" height="40"><span class="selectednavigationtext"><a href="team.php" >Teams</a></span>
 		<img src="views/img/goals.png" width="40" height="40"><span class="navigationtext"><a href="form.php" >Goals</a></span>
 		<img src="views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="comment/comment.php" >Discussion</a></span>           
 	</div>
 </div>
 
-<div class="wrap">
-<div class="message">
-	<?php
-		if ( isset($_SESSION['goal_message'])) {
-			echo("<p>"); 
-			echo($_SESSION['goal_message']);
-			echo("</p>");
-			unset($_SESSION['goal_message']);
-		}
-	?>
-</div>
+<div class="team_member">
+<?php
 
 
-<div class="task-list">
-	<p class="goal_title">Today's goals:</p>
-	<ul>
-    <?php
-    while($h=mysql_fetch_row($task_record)){
-    	if ($h[4] != 100){
-			echo '<li><span>'.$h[3].'</span><img id="'.$h[0].'" class="delete-button" src="todo_list/images/close.png"/></li>';
-		}
+
+$user_result = mysql_query("SELECT * FROM users");
+while($u=mysql_fetch_row($user_result)){
+	if ($u[0]!=$userid){
+		
+		echo "<div class='people'>";
+		echo "<img src='views/img/avatar_standard.jpg' width='50' height='50'>";
+		
+		$people_email=$u[3];
+		echo "<span class='people_info'><span class='people_name'>";
+		echo $u[1], "</span><span class='people_email'> $people_email</span></span><span class='people_comment'> ";
+
+		echo "</span><br>";
+		
+		echo "<div class='todo-list'>";
+		echo "Today's goals:";
+		echo "<ul>";
+		$team_record = mysql_query("SELECT * FROM task WHERE user_id = '$u[0]' and task_date = '$time'");	
+		while($h=mysql_fetch_row($team_record)){
+			echo '<li><span>'.$h[3].'</span></li>';
+		}	
+		echo "</ul>";
+		echo "</div>";		
+			
+		echo "</div>";		
+	
+
+
+		
+	
 	}
-    ?>
-    </ul>
-</div>
+}
+?>
+
+<!-- 	<p class="goal_title">Today's goals:</p> -->
+
+
 </div>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

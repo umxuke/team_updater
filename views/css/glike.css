@@ -379,3 +379,81 @@ margin-bottom:40px;
 	color: rgb(46, 226, 255);
 	margin-left:20px;
 }
+
+
+/* team page */
+.team_member
+{
+width: 550px;
+float:left;
+/* position:fixed; */
+margin-top:20px;
+margin-left:30px;
+}
+
+.people
+{
+height:80px;
+width:500px;
+padding:15px;
+margin-bottom:10px;
+border-radius:8px;
+background:#fafafa;
+}
+.people img{
+float:left;
+/* margin-top:10px; */
+}
+.people_info{
+width:120px;
+height:80px;
+float:left;
+margin-left:10px;
+border-right-color: #B3B3B3;
+border-right-style: solid;
+border-right-width: 1px;
+}
+.people_name{
+float:left;
+width:70px;
+height:25px;
+margin-top:5px;
+}
+.people_email{
+float:left;
+width:70px;
+height:25px;
+font-size:13px;
+}
+.people_comment{
+margin-top:20px;
+margin-left:20px;
+width: 200px;
+height: 50px;
+}
+.todo-list{
+float:left;
+margin-left: 20px;
+margin-top:-23px;
+width: 280px;
+height: 80px;
+}
+.todo-list ul {
+/* float:left; */
+list-style-type:circle;
+margin-top:5px;
+}
+
+.todo-list li {
+font-size: 0.9em;
+/* padding: 8px 0 8px 0; */
+/* overflow: hidden; */
+}
+
+.todo-list li span {
+width: 86%;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+/* float: left; */
+}

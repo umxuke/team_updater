@@ -66,7 +66,7 @@ if ( isset($_POST['goalsave'])) {
 	</div>
 	
 	<div class="headernavigationbar">
-		<img src="views/img/teams.png" width="40" height="40"><span class="navigationtext"><a href="" >Teams</a></span>
+		<img src="views/img/teams.png" width="40" height="40"><span class="navigationtext"><a href="team.php" >Teams</a></span>
 		<img src="views/img/goals.png" width="40" height="40"><span class="selectednavigationtext"><a href="form.php" >Goals</a></span>
 		<img src="views/img/discussion.png" width="40" height="40"><span class="navigationtext"><a href="comment/comment.php" >Discussion</a></span>           
 	</div>
